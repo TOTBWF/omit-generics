@@ -23,7 +23,5 @@
 
   #+BEGIN_SRC haskell
     Person "Steve" 43 ["loves cats"] == Person "Steve" 1 ["loves dogs", "is a baby"]
+    > True
   #+END_SRC
-
-  #+RESULTS:
-  : True
