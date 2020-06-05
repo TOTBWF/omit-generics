@@ -1,0 +1,55 @@
+cabal-version: 1.12
+
+-- This file has been generated from package.yaml by hpack version 0.33.0.
+--
+-- see: https://github.com/sol/hpack
+--
+-- hash: 8563bf1d430861c6d4d74cea37491c067818a61bd3d23091011b7be10af07233
+
+name:           omit-generics
+version:        0.1.0.0
+description:    Please see the README on GitHub at <https://github.com/githubuser/omit-generics#readme>
+homepage:       https://github.com/githubuser/omit-generics#readme
+bug-reports:    https://github.com/githubuser/omit-generics/issues
+author:         Author name here
+maintainer:     example@example.com
+copyright:      2020 Author name here
+license:        BSD3
+license-file:   LICENSE
+build-type:     Simple
+extra-source-files:
+    README.md
+    ChangeLog.md
+
+source-repository head
+  type: git
+  location: https://github.com/githubuser/omit-generics
+
+library
+  exposed-modules:
+      GHC.Generics.Omit
+      GHC.Generics.Omit.Internal
+      Lib
+  other-modules:
+      Paths_omit_generics
+  hs-source-dirs:
+      src
+  build-depends:
+      base >=4.7 && <5
+  default-language: Haskell2010
+
+test-suite omit-generics-test
+  type: exitcode-stdio-1.0
+  main-is: Spec.hs
+  other-modules:
+      Paths_omit_generics
+  hs-source-dirs:
+      test
+  ghc-options: -threaded -rtsopts -with-rtsopts=-N
+  build-depends:
+      HUnit
+    , base >=4.7 && <5
+    , omit-generics
+    , tasty
+    , tasty-hunit
+  default-language: Haskell2010

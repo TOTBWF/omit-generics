@@ -1,0 +1,29 @@
+* omit-generics
+  =omit-generics= aims to make deriving ~Eq~ and ~Ord~ instances
+  easier by giving the programmer control over what fields to ignore.
+
+  This is best explained by an example:
+  #+BEGIN_SRC haskell :multi-line t
+    {-# LANGUAGE DataKinds #-}
+    {-# LANGUAGE DeriveGeneric #-}
+    {-# LANGUAGE DerivingStrategies #-}
+    {-# LANGUAGE DerivingVia #-}
+
+    import GHC.Generics
+    import GHC.Generics.Omit
+
+    data Person = Person { name :: String, age :: Int, metadata :: [String] }
+        deriving stock Generic
+        deriving Eq via (Omit '["age", "metadata"] Person)
+  #+END_SRC
+
+
+  Now, when we compare ~Person~ for equality, the ~age~ and ~metadata~
+  fields are ignored!
+
+  #+BEGIN_SRC haskell
+    Person "Steve" 43 ["loves cats"] == Person "Steve" 1 ["loves dogs", "is a baby"]
+  #+END_SRC
+
+  #+RESULTS:
+  : True
